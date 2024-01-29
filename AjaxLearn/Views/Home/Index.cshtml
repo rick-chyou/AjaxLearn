@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+@section Scripts {
+    <script>
+        //建立Promise物件
+        // const promise = new Promise((resolve, reject) => {
+        //     //非同步程式碼
+        //     //XMLHttpRequest、FileReader
+        //     if (true) {
+        //         resolve("成功");
+        //     } else {
+        //         reject("失敗");
+        //     }
+        // });
+
+        //使用Promise物件
+        //console.log(promise);
+
+        // promise
+        // .then(data=>console.log(`success:${data}`))
+        //     .catch(err => console.log(`error:${err}`))
+        // .finally(()=>console.log('end'))
+
+
+
+
+
+
+        // //Promise的鍊式呼叫
+        //   show("A")
+        //     .then(data => {
+        //         console.log(data);
+        //         return show("B");
+        //     })
+        //     .then(data => {
+        //         console.log(data);
+        //         return show("C");
+        //     })
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+
+
+        // function show(data) {
+        //     //建立Promise物件
+        //     const promise = new Promise((resolve, reject) => {
+        //         //非同步程式碼
+        //         //XMLHttpRequest、FileReader
+
+        //         setTimeout(() => {
+        //             resolve(data)
+        //         }, 1000)
+        //     });
+        //     return promise;
+        // }
+
+
+        //IIFE(網頁載入立即執行)
+        //async await
+        //同步語法底層是非同步
+        // (async() => {
+        //     let data = await show("A");
+        //     console.log(data);
+        //     data = await show("B");
+        //     console.log(data);
+        //     data = await show("C");
+        //     console.log(data);
+        // })();
+
+        var emps = [
+            { "name": "Tom", "workYearts": 3, "salary": 35000 },
+            { "name": "Jack", "workYearts": 5, "salary": 40000 },
+            { "name": "Mary", "workYearts": 7, "salary": 45000 },
+        ]
+    </script>
+
+
+
+}

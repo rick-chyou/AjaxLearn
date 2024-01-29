@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Card作業";
+}
+
+<h1>HWShowJsonbyCard</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4" id="container"></div>
+
+@section Scripts {
+    <script src="~/js/travel.js"></script>
+    <script>
+        const sections = spots.CommonFormat.Section;
+        let context="";
+        sections.forEach(s => {
+            const xbody = s.xbody.substring(0, 100)+"...";
+            const src = s.file.img[0]?.text;
+            context +=  `           
+               <div class="card h-100">
+                    <img src="${src}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${s.stitle}</h5>
+                        <p class="card-text">${xbody} </p>
+                    </div>
+                    <div class="card-footer">   
+                        <small class="text-muted">${s.address}</small>
+                    </div>
+                </div>` 
+        })
+        $('#container').html(context);
+    </script>        
+}

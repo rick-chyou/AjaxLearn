@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "JsonTest";
+}
+
+<h1>JsonTest</h1>
+<ul id="jsonUpdate">
+</ul>
+
+@section Scripts {
+    <script>
+        const ul = document.getElementById("jsonUpdate");
+        let context;
+        //array
+        var emps = [
+            { "name": "Tom", "workYearts": 3, "salary": 35000 },
+            { "name": "Jack", "workYearts": 5, "salary": 40000 },
+            { "name": "Mary", "workYearts": 7, "salary": 45000 }
+        ];
+
+        emps.forEach(emp => {
+            context = context + `<li>姓名：${emp.name}年資：${emp.workYearts}薪水：${emp.salary}</li>`
+        });
+        ul.innerHTML = context;
+
+        //json
+        context = "";
+        var emps = '[{ "name": "Tom", "workYearts": 3, "salary": 35000 },{ "name": "Jack", "workYearts": 5, "salary": 40000 },{ "name": "Mary", "workYearts": 7, "salary": 45000 }]';
+        var jsonObject = JSON.parse(emps);
+
+        jsonObject.forEach(jemp => {
+            context = context + `<li>姓名：${jemp.name}年資：${jemp.workYearts}薪水：${jemp.salary}</li>`
+        });
+        ul.innerHTML = context;
+    </script>
+}
