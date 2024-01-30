@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>First Ajax Demo</h1>
+<input type="button" class="btn btn-primary mb-3" value="Ajax開始" id="buttonStart"/>
+<input type="button" class="btn btn-primary mb-3" value="Ajax停止" id="buttonStop" />
+<img src="~/images/arrows.gif" id="img1" style="display:none"/>
+<div class="alert alert-info" id="divInfo"></div>
+
+@section Scripts {
+    <script>
+        const btnStart = $('#buttonStart');
+        const btnStop = $('#buttonStop');
+        const divInfo = $('#divInfo');
+        const img1 = $('#img1');
+
+        let abortController;
+        btnStop.on("click", function () {
+            if (abortController) {
+                abortController.abort();
+            }
+        })
+
+        btnStart.on("click",async function () {
+            try {
+                img1.css("display", "inline");
+                btnStart.prop("disabled", true);
+                btnStart.attr("value", "執行中...");
+                abortController = new AbortController();
+                const signal = abortController.signal;
+
+                //5秒鐘沒有回傳結果就停止程式執行
+                setTimeout(function () {
+                    abortController.abort();
+                }, 5000);
+
+                const response = await fetch('@Url.Content("~/api/index")', {signal});
+                if(!response.ok){
+                    throw new Error(`${response.status}`);
+                }
+                const data = await response.text();
+                divInfo.html(`<h3>${data}</h3>`);
+            }
+            catch(error) {
+                let message = error.message;
+                if (error.name === "AbortError") {
+                    message = "伺服器忙碌中，請稍後再來";
+                }
+                divInfo.html(`<h3>${message}</h3>`);
+            }
+            finally {
+                console.log(`finally`);
+                img1.css("display", "none");
+                btnStart.prop("disabled", false);
+                btnStart.attr("value", "Ajax開始");
+            }
+        })
+    </script>
+}

@@ -38,5 +38,20 @@ namespace AjaxLearn.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult First()
+        {
+            return View();
+        }
+
+        public IActionResult Second()
+        {
+            return View();
+        }
+
+        public IActionResult HW2()
+        {
+            return View();
+        }
     }
 }

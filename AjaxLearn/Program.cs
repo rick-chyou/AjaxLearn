@@ -32,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=HWShowJsonbyCard}/{id?}");
+    pattern: "{controller=home}/{action=HW2}/{id?}");
 
 app.Run();
