@@ -23,7 +23,7 @@ namespace AjaxLearn.Controllers
             return View();
         }
 
-        public IActionResult HWShowJsonbyCard()
+        public IActionResult HW1()
         {
             return View();
         }
