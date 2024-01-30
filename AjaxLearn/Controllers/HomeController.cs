@@ -53,5 +53,10 @@ namespace AjaxLearn.Controllers
         {
             return View();
         }
+
+        public IActionResult HW2Fetch()
+        {
+            return View();
+        }
     }
 }

@@ -53,7 +53,7 @@ namespace AjaxLearn.Controllers
             //int a = 1;
             //int b = 0;
             //int c = a / b;
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
             return Content((_context.Members.Any(m => m.Name == user.Name)).ToString());
         }
     }

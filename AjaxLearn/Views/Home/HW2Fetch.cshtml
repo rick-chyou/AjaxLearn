@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "HW2";
+}
+
+<h1>HW2</h1>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form id="userForm">
+            <div class="mb-3">
+                <label for="userName" class="form-label">姓名：</label>
+                <input type="text" class="form-control" id="userName" name="Name">
+                <div class="alert alert-warning" id="divWarning"></div>
+            </div>
+            <div class="mb-3">
+                <label for="UserEmail" class="form-label">電子郵件：</label>
+                <input type="email" class="form-control" id="userEmail" name="Email">
+            </div>
+            <div class="mb-3">
+                <label for="userAge" class="form-label">年紀：</label>
+                <input type="number" class="form-control" id="userAge" name="Age">
+            </div>
+
+            <button id="button1" type="button" class="btn btn-primary">送出</button>
+            <button id="abortButton" type="button" class="btn btn-primary">中止</button>
+        </form>
+        <div class="alert alert-info" id="div1"></div>
+    </div>
+    <div class="col-3">
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#userName').on("keypress", function () {
+                $("#divWarning").html("");
+                $("#div1").html("");
+            })
+
+            $("#button1").on("click", async function () {
+                try {
+                    //5秒鐘沒有回傳結果就停止程式執行
+                    abortController = new AbortController();
+                    const signal = abortController.signal;
+                    setTimeout(function () {
+                        abortController.abort();
+                    }, 1000);
+
+                    const userName = $("#userName");
+                    const userEmail = $("#userEmail");
+                    const userAge = $("#userAge");
+                    const urlstring = `@Url.Content("~/api/RegisterHW")?name=${userName.val()}&email=${userEmail.val()}&age=${userAge.val()}`;
+
+                    const response = await fetch(urlstring, { signal });
+                    if (!response.ok) {
+                        throw new Error(`${response.status}`);
+                        return;
+                    }
+                    const data = await response.text();
+                    if (data == "True") {
+                        $("#divWarning").html("<h3>姓名已存在!</h3>");
+                    }
+                    else {
+                        $("#div1").html(`Hello ${userName.val()}，${userAge.val()}了，電子郵件是${userEmail.val()}`);
+                    }
+                }
+                catch (error) {
+                    console.log(error.name);
+                    let message = error.message;
+                    if (error.name === "AbortError") {
+                        message = "伺服器忙碌中，請稍後再來";
+                    }
+                    $("#div1").html(`<h3>${message}</h3>`);
+                }
+                finally {
+                    console.log("finally");
+                }
+            })
+
+            //手動停止AJAX請求
+            $('#abortButton').on('click', function () {
+                abortController.abort();
+            });
+        })
+    </script>
+}
