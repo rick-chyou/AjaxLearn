@@ -1,5 +1,6 @@
 ﻿using AjaxLearn.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics;
 
 namespace AjaxLearn.Controllers
@@ -55,6 +56,42 @@ namespace AjaxLearn.Controllers
         }
 
         public IActionResult HW2Fetch()
+        {
+            return View();
+        }
+
+
+        public IActionResult Avatar()
+        {
+            return View();
+        }
+
+        public IActionResult Category()
+        {
+            return View();
+        }
+        
+        public IActionResult FormbyFetch()
+        {
+            return View();
+        }
+
+        public IActionResult FormbyFetchFormData()
+        {
+            return View();
+        }
+
+        public IActionResult JsontoApi()
+        {
+            return View();
+        }
+        
+        public IActionResult apitest()
+        {
+            return View();
+        }
+
+        public IActionResult HW3()
         {
             return View();
         }

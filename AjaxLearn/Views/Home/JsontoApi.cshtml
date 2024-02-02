@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "JsontoApi";
+}
+
+<h1>JsontoApi</h1>
+<div id="div1"></div>
+
+@section Scripts {
+    <script>
+        const searchData = {
+            "categoryId": 0,
+            "keyword": "北投",
+            "page": 1,
+            "pageSize": 9,
+            "sortType": "asc",
+            "sortBy": ""
+        }
+
+        async function Spots() {
+            const response = await fetch("@Url.Content("~/api/Spots")", {
+                'method': 'POST',
+                'body': JSON.stringify(searchData),
+                'headers': {
+                'Content-Type': 'application/json'
+                }
+            })
+            const spots = await response.json();
+            console.log(spots);
+            $("#div1").html(spots.keyword);
+        }
+
+        Spots();
+
+    </script>
+
+}

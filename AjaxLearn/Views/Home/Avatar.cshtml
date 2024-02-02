@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Avatar";
+}
+
+<h1>Avatar</h1>
+
+<img id="img1" class="img-thumbnail w-25" />
+
+@section Scripts {
+    <script>
+        $(async function () {
+            const url = '@Url.Content("~/api/avatar/2")';
+            //const url = '@Url.Content("~/api/avatar")?id=4';
+            const response = await fetch(url);
+            if (!response.ok) {
+                console.log(`有錯誤：${response.status}`);
+                return
+            }
+            const datas = await response.blob();
+            $("#img1").attr("src", URL.createObjectURL(datas));
+        })
+    </script>
+}

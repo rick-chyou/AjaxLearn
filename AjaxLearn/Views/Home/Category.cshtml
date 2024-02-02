@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Category";
+}
+
+<h1>Category</h1>
+
+<select id="select1"></select>
+<select id="select2"></select>
+
+@section Scripts {
+    <script>
+
+        $(async function () {
+            const url = '@Url.Content("~/api/Category")';
+            const response = await fetch(url);
+            if (!response.ok) {
+                console.log(`有錯誤：${response.status}`);
+                return
+            }
+            const datas = await response.json();
+
+            let categoriesForEach = "";
+            datas.forEach(c => {
+                categoriesForEach += `<option value="${c.categoryId}">${c.categoryName}</option>`;
+            })
+            $("#select1").html(categoriesForEach);
+        })
+
+        $("#select1").on("change",async function () {
+            //const url = '@Url.Content("~/api/Spot")?id=' + $("#select1").val();
+            const url = '@Url.Content("~/api/Spot")/' + $("#select1").val();
+            const response = await fetch(url);
+            if (!response.ok) {
+                console.log(`有錯誤：${response.status}`);
+                return
+            }
+            const datas = await response.json();
+
+            let spots = "";
+            datas.forEach(c => {
+                console.log(c);
+                spots += `<option value="${c.spotId}">${c.spotTitle}</option>`;
+            })
+            $("#select2").html(spots);
+        })
+
+    </script>
+}

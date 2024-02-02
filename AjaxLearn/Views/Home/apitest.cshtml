@@ -1,0 +1,13 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@section Scripts{
+    <script>
+        $(async function () {
+            const response = await fetch('https://localhost:7241/Categories/get.json');
+            console.log(response);
+        })
+    </script>
+}
