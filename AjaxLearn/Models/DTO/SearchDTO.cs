@@ -2,12 +2,12 @@
 {
     public class SearchDTO
     {
-        public string? keyword { get; set; }
-        public int? categoryId { get; set; } = 0;
-        public string? sortBy { get; set; }
-        public string? sortType { get; set; } = "asc";
-        public int? page { get; set; } = 1;
-        public int? pageSize { get; set; } = 9;
+        public int? CategoryId { get; set; }
+        public string? Keyword { get; set; }
+        public string? SortBy { get; set; }
+        public string? SortType { get; set; }
+        public int? Page { get; set; }
+        public int? PageSize { get; set; }
 
     }
 }
